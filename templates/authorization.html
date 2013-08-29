@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="authorization">
+    {% if 'username' in session %}
+        <p>Милости просим! :D</p>
+        <form action="{{url_for('authorization')}}" method="post">
+            <p>Ну а если вы попали сюда случайно или просто хотите выйти, нажмите</p>
+            <input type="submit" name="logout" value="Сюда" />
+        </form>
+    {% else %}
+        <form action="{{url_for('authorization')}}" method="post">
+            <p>Имя пользователя:<br />
+            <input type="text" name="username" /></p>
+            <p>Пароль:<br />
+            <input type="password" name="password" /></p>
+            <p><input type="submit" value="Войти" /></p>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

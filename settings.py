@@ -1,0 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+secret_key = 'z:;\xd2)\x8ey\xfb\xa3\x84\xc5\xec\xb6G\x05z\xb1J\x00(}\xc8\x03\xbde'
+debug = True

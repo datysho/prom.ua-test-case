@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test case for Python Developer</title>
+    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+</head>
+<body>
+    <div id="page">
+        <div id="header">Welcome to my test case. :)</div>
+        <div id="navigation">
+            {% if 'username' in session %}
+                <div class="nav-item"><a href="{{url_for('test-case')}}">Задание</a></div>
+                <div class="nav-item"><a href="#">Админка</a></div>
+                <div class="nav-item"><a href="{{url_for('authorization')}}">Выйти</a></div>
+            {% else %}
+                <div class="nav-item"><a href="{{url_for('authorization')}}">Авторизация</a></div>
+            {% endif %}
+        </div>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="footer">© Андреев Михаил<br>+380938085125, +380502775485, +380968743493<br>Skype: datysho, Email: datysho@ya.ru</div>
+    </div>
+</body>
+</html>

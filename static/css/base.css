@@ -1,0 +1,117 @@
+@font-face{
+    font-family: 'Cuprum';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Cuprum'), local('Cuprum-Regular'), url(http://themes.googleusercontent.com/static/fonts/cuprum/v4/wHBEZCjwNI3HN2fD1RQJgw.woff) format('woff');
+}
+body{
+    font-family: 'Cuprum', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #292323;
+    color: #292323;
+}
+#page, #header, #navigation, #content, #footer{
+    width: 800px;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+#page{
+    margin-top: 30px;
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+}
+#header{
+    height: 120px;
+    background-color: #fdbb30;
+    text-align: center;
+    font-size: 42px;
+    line-height: 120px;
+}
+#navigation{
+    height: 40px;
+    background-color: #292323;
+}
+.nav-item a{
+    height: 40px;
+    width: 200px;
+    color: #fdbb30;
+    font-size: 24px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+.nav-item a:hover{
+    color: #ffffff;
+}
+#content{
+    min-height: 600px;
+    background-color: #fdbb30;
+    text-align: justify;
+    width: 740px;
+    padding: 0 30px;
+}
+#content p{
+    text-indent: 24px;
+    font-size: 18px;
+}
+ol{
+    padding: 0;
+}
+ul.ul-level-1{
+    list-style-type: decimal;
+}
+ul.ul-level-2{
+    list-style-type: lower-roman;
+}
+ul.ul-level-3{
+    list-style-type: lower-latin;
+}
+#footer{
+    height: 72px;
+    background-color: #292323;
+    color: #fdbb30;
+    text-align: center;
+    line-height: 24px;
+}
+input{
+    width: 33%;
+    height: 30px;
+    background-color: #ffffff;
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    height: 30px;
+}
+input[type="submit"]{
+    background-color: #292323;
+    color: #fdbb30;
+    cursor: pointer;
+}
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+}
+#content a:link{
+    color: #292323;
+    text-decoration: none;
+}
+#content a:visited{
+    color: #292323;
+    text-decoration: none;
+}
+#content a:hover{
+    color: #ffffff;
+    text-decoration: none;
+}
+#authorization{
+    text-align: center;
+}
+#authorization p{
+    text-indent: 0;
+}
