@@ -115,3 +115,33 @@ h1, h2, h3, h4, h5, h6{
 #authorization p{
     text-indent: 0;
 }
+#flashed{
+    color: #292323;
+    font-size: 22px;
+    padding: 20px;
+}
+#admin{
+    text-align: center;
+    font-size: 22px;
+}
+#admin input[type="submit"]{
+    font-size: 16px;
+    line-height: 20px;
+    height: 20px;
+    width: 100px;
+}
+#admin select{
+    border: none;
+    height: 20px;
+    background-color: #ffffff;
+    width: 100px;
+    color: #292323;
+}
+table{
+    margin: 0 auto;
+    width: 600px;
+    border: 1px solid #292323;
+}
+tr, td{
+    border: 1px solid #292323;
+}

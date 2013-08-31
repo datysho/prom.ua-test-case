@@ -11,13 +11,9 @@
     <div id="page">
         <div id="header">Welcome to my test case. :)</div>
         <div id="navigation">
-            {% if 'username' in session %}
-                <div class="nav-item"><a href="{{url_for('test-case')}}">Задание</a></div>
-                <div class="nav-item"><a href="#">Админка</a></div>
-                <div class="nav-item"><a href="{{url_for('authorization')}}">Выйти</a></div>
-            {% else %}
-                <div class="nav-item"><a href="{{url_for('authorization')}}">Авторизация</a></div>
-            {% endif %}
+            <div class="nav-item"><a href="{{url_for('test_case')}}">Задание</a></div>
+            <div class="nav-item"><a href="{{url_for('admin')}}">Админка</a></div>
+            <div class="nav-item"><a href="{{url_for('authentication')}}">Выйти</a></div>
         </div>
         <div id="content">
             {% block content %}{% endblock %}
