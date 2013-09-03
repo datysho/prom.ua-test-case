@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="admin">
+        {% if 'username' in session %}
+            {% if tables %}
+                <p>Выберите интересующую вас таблицу</p>
+                <form action="{{ url_for('edit_table') }}" method="post">
+                    <select name="table-name">
+                        {% for table in tables %}
+                            <option>{{table}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <input type="submit" name="edit" value="Редактировать">
+                </form>
+            {% endif %}
+        {% else %}
+            <p>Пожалуйста, авторизируйтесь.</p>
+        {% endif %}
+    </div>
+{% endblock %}

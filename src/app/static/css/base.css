@@ -99,15 +99,15 @@ h1, h2, h3, h4, h5, h6{
 }
 #content a:link{
     color: #292323;
-    text-decoration: none;
+    text-decoration: underline;
 }
 #content a:visited{
     color: #292323;
-    text-decoration: none;
+    text-decoration: underline;
 }
 #content a:hover{
     color: #ffffff;
-    text-decoration: none;
+    text-decoration: underline;
 }
 #authorization{
     text-align: center;
@@ -128,20 +128,64 @@ h1, h2, h3, h4, h5, h6{
     font-size: 16px;
     line-height: 20px;
     height: 20px;
-    width: 100px;
+    width: 150px;
 }
 #admin select{
     border: none;
     height: 20px;
     background-color: #ffffff;
-    width: 100px;
+    width: 150px;
     color: #292323;
 }
 table{
     margin: 0 auto;
     width: 600px;
-    border: 1px solid #292323;
+    border: none;
 }
 tr, td{
     border: 1px solid #292323;
+    height: 20px;
+}
+.hidden{
+    border: none;
+}
+table input{
+    height: 19px;
+    line-height: 27px;
+}
+table input[type="text"]{
+    width: 95%;
+}
+table input[type="submit"]{
+    height: 20px;
+    background-color: #fdbb30;
+    color: #292323;
+    border: none;
+}
+table input[type="submit"]:hover{
+    color: #ffffff;
+}
+form{
+    margin: 20px;
+}
+ul.ui-autocomplete{
+    width: 150px;
+    background-color: #292323;
+    color: #fdbb30;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li.ui-menu-item{
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+}
+li.ui-menu-item:hover{
+    background-color: #fdbb30;
+    color: #292323;
+}
+.ui-helper-hidden-accessible {
+    display:none;
 }
