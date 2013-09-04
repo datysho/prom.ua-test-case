@@ -189,3 +189,12 @@ li.ui-menu-item:hover{
 .ui-helper-hidden-accessible {
     display:none;
 }
+input{margin: 5px;}
+.comment{font-size: 12px!important;color: #fdbb30;background-color: #292323}
+.ui-tooltip{
+    width: 30%;
+    text-align: center;
+    font-size: 16px;
+    background-color: #292323;
+    color: #fdbb30;
+}

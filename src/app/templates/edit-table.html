@@ -4,11 +4,14 @@
 {% if 'username' in session %}
 {% if rows %}
     <p>Добавить запись</p>
+    <p class="comment">Для того что бы добавить книгу, введите ее название в левое поле и нажмите добавить, при желание в правом поле вы можете указать автора или их список (через запятую).</p>
+    <p class="comment">Для того что бы добавить одного или нескольких авторов, без добавления книги, оставте левое поле пустым.<p>
     <form action="{{ url_for('edit_table') }}" method="post">
-        <input type="text" name="book_title">
-        <input type="text" name="author_name">
+        <input type="text" name="book_title" title="Сюда можно ввести название книги">
+        <input type="text" name="author_name" title="Суда можно ввести имя автора или список авторов, имена в списке необходимо писать через ',' а вот на пробелы после запятой или перед ней совершенно наплевать, так как полученные данные тримируются">
         <input type="submit" value="Добавить">
     </form>
+    {% if table_name == 'books' %}<p class="comment">Столбец "Список Авторов" не является частью таблицы "books", он связан с ней связью many-to-many, отображается для наглядности.</p>{% endif %}
     <p>Содержание таблицы {{table_name}}</p>
     <table cellpadding="0" cellspacing="0">
     {% for row in rows %}
@@ -17,13 +20,17 @@
         {% if column is sequence and column is string or column is number %}
             <td>{{column}}</td>
         {% else %}
-            <td>{% for c in column %}{{c}}{% if loop.last %}{% else %}, {% endif %}{% endfor %}</td>
+            <td>
+            {% for c in column %}
+            {% if c == '' %}None{% else %}{{c}}{% endif %}{% if loop.last %}{% else %}, {% endif %}
+            {% endfor %}
+            </td>
         {% endif %}
         {% endfor %}
         {% if row[0] != "ID" %}
             <td>
-                <a href="{{ url_for('edit_table') }}update/{{row[0]}}">Удалить</a>
-                <a href="{{ url_for('edit_table') }}update/{{row[0]}}">Удалить</a>
+                <a href="{{ url_for('edit_table') }}update/{{row[0]}}">Редактировать</a>
+                <a href="{{ url_for('edit_table') }}delete/{{row[0]}}">Удалить</a>
             </td>
         {% else %}
             <td>Возможные действия</td>

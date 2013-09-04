@@ -3,6 +3,7 @@ from app import db
 from sqlalchemy import Column, Integer, String, Table, ForeignKey
 from sqlalchemy.orm import relationship
 
+
 class Users(db.Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key = True)
@@ -25,7 +26,7 @@ books_authors_table = Table(
 class Authors(db.Model):
     __tablename__ = 'authors'
     id = Column(Integer, primary_key=True)
-    author_name = Column(String(65), nullable=False)
+    author_name = Column(String(65), nullable=True)
 
     def __init__(self, author_name):
         self.author_name = author_name
@@ -35,7 +36,10 @@ class Authors(db.Model):
         return ['ID', u'Имя автора']
 
     def columns_data(self):
-        return [self.id, self.author_name]
+        author_name = self.author_name
+        if not author_name:
+            author_name = 'None'
+        return [self.id, author_name]
 
 
 class Books(db.Model):
@@ -48,22 +52,25 @@ class Books(db.Model):
         backref="books",
     )
 
-    def __init__(self, book_title, authors=None):
-        if not authors: authors = [
-            Authors(author_name=u'Автор неизвестен')
-        ]
+    def __init__(self, book_title, authors):
         self.book_title = book_title
         self.authors = authors
+
+    def append_author(self, author):
+        self.authors += [author]
 
     @staticmethod
     def columns_name():
         return ['ID', u'Название книги', u'Список Авторов']
 
     def columns_data(self):
-        return [self.id, self.book_title, self.get_authors()]
+        return [self.id, self.book_title, self.get_authors_names()]
 
-    def get_authors(self):
+    def get_authors_names(self):
         authors = [author.author_name for author in self.authors]
         if authors == []:
-            authors = [u'Не указано']
+            authors = [u'None']
         return authors
+
+    def get_authors_id(self):
+        return [author.id for author in self.authors]
