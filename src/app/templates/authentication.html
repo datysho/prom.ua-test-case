@@ -2,26 +2,27 @@
 {% block content %}
     <div id="authorization">
         <div id="flashed">
-            {% with messages = get_flashed_messages() %}
-                {% for message in messages %}
-                    {{message}}
-                {% endfor %}
-            {% endwith %}
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+        {% endwith %}
         </div>
         {% if 'username' in session %}
-            <p>Милости просим! :D</p>
-            <form action="{{url_for('authentication')}}" method="post">
-                <p>Ну а если вы попали сюда случайно или просто хотите выйти, нажмите</p>
-                <input type="submit" name="logout" value="Сюда" />
-            </form>
+        <p>Милости просим! :D</p>
+        <form action="{{url_for('authentication')}}" method="post">
+            <p>Ну а если вы попали сюда случайно или просто хотите выйти, нажмите</p>
+            <input type="submit" name="logout" value="Сюда" />
+        </form>
         {% else %}
-            <form action="{{url_for('authentication')}}" method="post">
-                <p>Имя пользователя:<br />
-                <input type="text" name="username" /></p>
-                <p>Пароль:<br />
-                <input type="password" name="password" /></p>
-                <p><input type="submit" value="Войти" /></p>
-            </form>
+        <form action="{{url_for('authentication')}}" method="post">
+            <p>Логин и пароль, test test</p>
+            <p>Имя пользователя:<br />
+            <input type="text" name="username" /></p>
+            <p>Пароль:<br />
+            <input type="password" name="password" /></p>
+            <p><input type="submit" value="Войти" /></p>
+        </form>
         {% endif %}
     </div>
 {% endblock %}

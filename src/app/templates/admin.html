@@ -2,10 +2,10 @@
 {% block content %}
     <div id="admin">
         {% if 'username' in session %}
-            <p>Добро пожаловать в админку. Для редактирования таблиц, нажмите</p>
-            <p><a href="{{url_for('chose_table')}}">СЮДА</a></p>
+        <p>Добро пожаловать в админку. Для редактирования таблиц, нажмите</p>
+        <p><a href="{{url_for('chose_table')}}">СЮДА</a></p>
         {% else %}
-            <p>Пожалуйста, <a href="{{url_for('authentication')}}">авторизируйтесь</a>.</p>
+        <p>Пожалуйста, <a href="{{url_for('authentication')}}">авторизируйтесь</a>.</p>
         {% endif %}
     </div>
 {% endblock %}

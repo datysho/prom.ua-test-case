@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="admin">
-{% if 'username' in session %}
-    <p class="comment">Здесь работают все теже правила, значения полей заменят соответствующие знаяения в БД, если вы введете список авторов, длинее чем был ранее, имена предыдущих авторов будут изменены, а новые успешно добавлены. Если же введеный вами список будет короче имеющегося в БД, лишние авторы будут удалены.</p>
-    <p>Редактировать запись {{columns_data[1]}}, ID {{columns_data[0]}}</p>
-    <form action="{{ url_for('edit_table') }}update/{{columns_data[0]}}" method="post">
-        {% for column in columns_names %}
-        <input type="text" name="name{{loop.index}}" value="{{column}}"><br>
-        {% endfor %}
-        <input type="submit" value="Изменить">
-    </form>
-{% else %}
-<p>Пожалуйста, авторизируйтесь.</p>
-{% endif %}
-</div>
+    <div id="admin">
+    {% if 'username' in session %}
+        <p class="comment">Здесь работают все теже правила, значения полей заменят соответствующие знаяения в БД, если вы введете список авторов, длинее чем был ранее, имена предыдущих авторов будут изменены, а новые успешно добавлены. Если же введеный вами список будет короче имеющегося в БД, лишние авторы будут удалены.</p>
+        <p>Редактировать запись {{columns_data[1]}}, ID {{columns_data[0]}}</p>
+        <form action="{{ url_for('edit_table') }}update/{{columns_data[0]}}" method="post">
+            {% for column in columns_names %}
+            <input type="text" name="name{{loop.index}}" value="{{column}}"><br>
+            {% endfor %}
+            <input type="submit" value="Изменить">
+        </form>
+    {% else %}
+    <p>Пожалуйста, авторизируйтесь.</p>
+    {% endif %}
+    </div>
 {% endblock %}

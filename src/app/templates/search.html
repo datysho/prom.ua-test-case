@@ -1,32 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<script>
-    var data = [{% for d in data %}"{{d}}",{% endfor %}];
-</script>
-<div id="admin">
-    <form action="{{ url_for('search') }}" method="post">
-        <input type="text" name="search" id="search" title="Для того что бы найти книгу, введите имя автора или ее название, точное вхождение необязательно, <3 full text search">
-        <input type="submit" value="Найти">
-    </form>
-    {% if search_result %}
+    <script>
+        var data = [{% for d in data %}"{{d}}",{% endfor %}];
+    </script>
+    <div id="admin">
+        <form action="{{ url_for('search') }}" method="post">
+            <input type="text" name="search" id="search" title="Для того что бы найти книгу, введите имя автора или ее название, точное вхождение необязательно, <3 full text search">
+            <input type="submit" value="Найти">
+        </form>
+        {% if search_result %}
         <p>Результаты поиска</p>
         <table cellpadding="0" cellspacing="0">
             {% for result in search_result %}
-                <tr>
-                    {% for column in result %}
-                        {% if column is sequence and column is string or column is number %}
-                            <td>{{column}}</td>
-                        {% else %}
-                            <td>
-                            {% for c in column %}
-                            {% if c == '' %}None{% else %}{{c}}{% endif %}{% if loop.last %}{% else %}, {% endif %}
-                            {% endfor %}
-                            </td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
+            <tr>
+                {% for column in result %}
+                {% if column is sequence and column is string or column is number %}
+                <td>{{column}}</td>
+                {% else %}
+                <td>{% for c in column %}{% if c == '' %}None{% else %}{{ c }}{% endif %}{% if loop.last %}{% else %}, {% endif %}{% endfor %}</td>
+                {% endif %}
+                {% endfor %}
+            </tr>
             {% endfor %}
         </table>
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 {% endblock %}

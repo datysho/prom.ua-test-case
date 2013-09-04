@@ -26,10 +26,11 @@ def authentication():
         password = password_hash(form.password.data)
         user = db.session.query(Users).filter_by(username=username).first()
 
-        if username == user.username and password == user.password:
+        if user and username == user.username and password == user.password:
             session['username'] = username
         else:
-            flash(u'Указанной вами связки логина и пароля не существует, возможно вы ввели неправильный логин или пароль, мы могли бы сказать конкретнее, но вдруг вы пытаетесь подобрать логин для брута...')
+            flash(u'Указанной вами связки логина и пароля не существует, возможно вы ввели неправильный \
+            логин или пароль, мы могли бы сказать конкретнее, но вдруг вы пытаетесь подобрать логин для брута...')
     return redirect(url_for('authentication'))
 
 @app.route('/admin/', methods=['GET'])
@@ -52,9 +53,8 @@ def edit_table(row_number_delete=None, row_number_update=None):
     try:
         table_name = request.form['table-name']
         session['table_name'] = table_name
-    except:
+    except KeyError:
         table_name = session['table_name']
-
     tables = {'books': Books, 'authors': Authors}
     model = tables[table_name]
 
@@ -66,7 +66,7 @@ def edit_table(row_number_delete=None, row_number_update=None):
 
     if row_number_update is not None:
         item = model.query.filter_by(id=row_number_update).first()
-        columns_names = item.columns_name()[1:]
+        columns_names = item.columns_names()[1:]
         columns_data = item.columns_data()
         if request.method == 'POST':
             if model == Books:
@@ -127,7 +127,7 @@ def edit_table(row_number_delete=None, row_number_update=None):
 
     rows = model.query.all()
     rows = [row.columns_data() for row in rows]
-    rows.insert(0, model.columns_name())
+    rows.insert(0, model.columns_names())
     return render_template('edit-table.html',
                            rows=rows,
                            table_name=table_name)
@@ -143,7 +143,7 @@ def search():
         if form.validate():
 
             search_result = Books.query.filter(
-                Books.authors.any(
+                Books.author.any(
                     Authors.author_name.like('%' + form.search.data + '%')
                 )
             ).all()
@@ -153,6 +153,6 @@ def search():
             ).all()
             search_result = sifter(search_result)
             search_result = [result.columns_data() for result in search_result]
-            search_result.insert(0, Books.columns_name())
+            search_result.insert(0, Books.columns_names())
 
     return render_template('search.html', data=data, search_result=search_result)

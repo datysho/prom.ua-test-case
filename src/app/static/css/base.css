@@ -173,6 +173,9 @@ ul.ui-autocomplete{
     background-color: #292323;
     color: #fdbb30;
     list-style-type: none;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
 }

@@ -4,8 +4,11 @@ import hashlib
 
 def password_hash(password):
     hash = hashlib.new('ripemd160')
-    hash.update(password)
-    return hash.hexdigest()
+    try:
+        hash.update(password)
+        return hash.hexdigest()
+    except UnicodeEncodeError:
+        return False
 
 
 def sifter(seq):

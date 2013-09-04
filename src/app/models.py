@@ -5,26 +5,24 @@ from sqlalchemy.orm import relationship
 
 
 class Users(db.Model):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key = True)
-    username = Column(String(20), nullable = False)
-    password = Column(String(20), nullable = False)
+    id = Column(Integer, primary_key=True)
+    username = Column(String(20), nullable=False)
+    password = Column(String(20), nullable=False)
 
     def __init__(self, username, password):
         self.username = username
         self.password = password
 
 
-books_authors_table = Table(
+books_authors_associations = Table(
     'association',
     db.metadata,
-    Column('fk_books', Integer, ForeignKey('books.id'), nullable=True),
-    Column('fk_authors', Integer, ForeignKey('authors.id'), nullable=True)
+    Column('books', Integer, ForeignKey('books.id'), nullable=True),
+    Column('authors', Integer, ForeignKey('authors.id'), nullable=True)
 )
 
 
 class Authors(db.Model):
-    __tablename__ = 'authors'
     id = Column(Integer, primary_key=True)
     author_name = Column(String(65), nullable=True)
 
@@ -32,7 +30,7 @@ class Authors(db.Model):
         self.author_name = author_name
 
     @staticmethod
-    def columns_name():
+    def columns_names():
         return ['ID', u'Имя автора']
 
     def columns_data(self):
@@ -43,34 +41,33 @@ class Authors(db.Model):
 
 
 class Books(db.Model):
-    __tablename__ = 'books'
     id = Column(Integer, primary_key=True)
     book_title = Column(String(65), nullable=False)
-    authors = relationship(
+    author = relationship(
         "Authors",
-        secondary=books_authors_table,
+        secondary=books_authors_associations,
         backref="books",
     )
 
     def __init__(self, book_title, authors):
         self.book_title = book_title
-        self.authors = authors
+        self.author = authors
 
     def append_author(self, author):
-        self.authors += [author]
+        self.author += [author]
 
     @staticmethod
-    def columns_name():
+    def columns_names():
         return ['ID', u'Название книги', u'Список Авторов']
 
     def columns_data(self):
         return [self.id, self.book_title, self.get_authors_names()]
 
     def get_authors_names(self):
-        authors = [author.author_name for author in self.authors]
-        if authors == []:
+        authors = [author.author_name for author in self.author]
+        if not authors:
             authors = [u'None']
         return authors
 
     def get_authors_id(self):
-        return [author.id for author in self.authors]
+        return [author.id for author in self.author]

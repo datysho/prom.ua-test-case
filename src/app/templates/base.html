@@ -16,14 +16,13 @@
             <div class="nav-item"><a href="{{url_for('admin')}}">Админка</a></div>
             <div class="nav-item"><a href="{{url_for('search')}}">Поиск книг</a></div>
             {% if 'username' in session %}
-                <div class="nav-item"><a href="{{url_for('authentication')}}">Выйти</a></div>
+            <div class="nav-item"><a href="{{url_for('authentication')}}">Выйти</a></div>
             {% else %}
-                <div class="nav-item"><a href="{{url_for('authentication')}}">Войти</a></div>
+            <div class="nav-item"><a href="{{url_for('authentication')}}">Войти</a></div>
             {% endif %}
-
         </div>
         <div id="content">
-            {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
         </div>
         <div id="footer">© Андреев Михаил<br>+380938085125, +380502775485, +380968743493<br>Skype: datysho, Email: datysho@ya.ru</div>
     </div>
