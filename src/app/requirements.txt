@@ -1,0 +1,5 @@
+Flask==0.10.1
+Flask-SQLAlchemy==1.0
+Jinja2==2.7.1
+SQLAlchemy==0.8.2
+WTForms	1.0.4==1.0.4
